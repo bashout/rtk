@@ -29,7 +29,7 @@ pub fn format_hooks_toml(hook_script_path: &str) -> String {
     let hooks = vec![
         VibeHook {
             name: "rtk-rewrite",
-            hook_type: "before_tool",
+            hook_type: "pre_tool",
             match_: "bash",
             command: hook_script_path.to_string(),
             timeout: 60.0,
@@ -38,7 +38,7 @@ pub fn format_hooks_toml(hook_script_path: &str) -> String {
         },
         VibeHook {
             name: "rtk-rewrite-shell",
-            hook_type: "before_tool",
+            hook_type: "pre_tool",
             match_: "run_shell_command",
             command: hook_script_path.to_string(),
             timeout: 60.0,
@@ -72,7 +72,7 @@ mod tests {
         assert!(result.contains("[[hooks]]"));
         assert!(result.contains("rtk-rewrite"));
         assert!(result.contains("rtk-rewrite-shell"));
-        assert!(result.contains("before_tool"));
+        assert!(result.contains("pre_tool"));
         assert!(result.contains("bash"));
         assert!(result.contains("run_shell_command"));
         assert!(result.contains("/path/to/rtk-hook-vibe.sh"));
@@ -102,7 +102,7 @@ mod tests {
     fn test_vibe_hook_struct_serialization() {
         let hook = VibeHook {
             name: "test-hook",
-            hook_type: "before_tool",
+            hook_type: "pre_tool",
             match_: "bash",
             command: "/test/command".to_string(),
             timeout: 30.0,
@@ -114,7 +114,7 @@ mod tests {
 
         // Verify all fields are present (order may vary)
         assert!(toml.contains("test-hook"));
-        assert!(toml.contains("before_tool"));
+        assert!(toml.contains("pre_tool"));
         assert!(toml.contains("bash"));
         assert!(toml.contains("/test/command"));
         assert!(toml.contains("30") || toml.contains("30.0"));
@@ -127,7 +127,7 @@ mod tests {
         let hooks = vec![
             VibeHook {
                 name: "hook1",
-                hook_type: "before_tool",
+                hook_type: "pre_tool",
                 match_: "bash",
                 command: "/cmd1".to_string(),
                 timeout: 60.0,
@@ -136,7 +136,7 @@ mod tests {
             },
             VibeHook {
                 name: "hook2",
-                hook_type: "before_tool",
+                hook_type: "pre_tool",
                 match_: "run_shell_command",
                 command: "/cmd2".to_string(),
                 timeout: 60.0,

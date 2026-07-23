@@ -203,7 +203,7 @@ rtk init -g --agent vibe
 ```
 
 **Requirements:**
-- Mistral Vibe >= 2.15.0 (when `before_tool` hooks were introduced)
+- Mistral Vibe >= 2.15.0 (when `pre_tool` hooks were introduced)
 - Enable experimental hooks in your Vibe config:
   ```toml
   # ~/.vibe/config.toml or .vibe/config.toml
